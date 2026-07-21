@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Subscription, Stats } from '../type.ts';
 
-const API_BASE = 'http://localhost:3001/api/subscriptions';
+const API_BASE = 'https://subscription-tracker-backend-tnuk.onrender.com/api/subscriptions';
 
 // converts snake_case API response into camelCase Subscription type
 function normalize(raw: any): Subscription {
