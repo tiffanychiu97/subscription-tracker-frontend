@@ -58,6 +58,12 @@ function validate(): boolean {
   if (form.cost <= 0) {
     errors.push("Cost must be greater than 0");
   }
+  if (!form.startDate) {
+    errors.push("Start date is required");
+  }
+  if (!form.nextRenewalDate) {
+    errors.push("Next renewal date is required");
+  }
   if (
     form.startDate &&
     form.nextRenewalDate &&
