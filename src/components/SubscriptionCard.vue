@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Subscription } from "../types";
+import type { Subscription } from "../type";
 
 defineProps<{
   subscription: Subscription;

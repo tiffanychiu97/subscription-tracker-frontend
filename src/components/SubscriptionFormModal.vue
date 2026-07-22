@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, watch } from "vue";
-import type { Subscription, BillingCycle, Category } from "../types";
+import type { Subscription, BillingCycle, Category } from "../type";
 
 const props = defineProps<{
   isOpen: boolean;

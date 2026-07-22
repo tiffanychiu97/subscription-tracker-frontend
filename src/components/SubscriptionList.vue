@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useSubscriptionStore } from "../stores/subscriptions";
 import SubscriptionCard from "./SubscriptionCard.vue";
 import SubscriptionFormModal from "./SubscriptionFormModal.vue";
-import type { Subscription } from "../types";
+import type { Subscription } from "../type";
 import LoadingSpinner from "./LoadingSpinner.vue";
 import EmptyState from "./EmptyState.vue";
 
