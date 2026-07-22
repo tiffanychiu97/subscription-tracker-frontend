@@ -3,6 +3,7 @@ import { useSubscriptionStore } from "../stores/subscriptions";
 import CategoryChart from "./CategoryChart.vue";
 import SpendTrendChart from "./SpendTrendChart.vue";
 import LoadingSpinner from "./LoadingSpinner.vue";
+import UpcomingRenewals from "./UpcomingRenewals.vue";
 
 const store = useSubscriptionStore();
 </script>
@@ -32,9 +33,10 @@ const store = useSubscriptionStore();
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <CategoryChart />
       <SpendTrendChart />
+      <UpcomingRenewals />
     </div>
   </section>
 </template>
