@@ -10,6 +10,7 @@ import EmptyState from "./EmptyState.vue";
 const store = useSubscriptionStore();
 const isModalOpen = ref(false);
 const editingSub = ref<Subscription | null>(null);
+const submitError = ref<string | null>(null);
 
 function openAddModal() {
   editingSub.value = null;
@@ -22,12 +23,17 @@ function openEditModal(sub: Subscription) {
 }
 
 async function handleSubmit(data: Omit<Subscription, "id">) {
-  if (editingSub.value) {
-    await store.updateSubscription(editingSub.value.id, data);
-  } else {
-    await store.addSubscription(data);
+  submitError.value = null;
+  try {
+    if (editingSub.value) {
+      await store.updateSubscription(editingSub.value.id, data);
+    } else {
+      await store.addSubscription(data);
+    }
+    isModalOpen.value = false;
+  } catch (e) {
+    submitError.value = (e as Error).message;
   }
-  isModalOpen.value = false;
 }
 
 async function handleDelete(id: string) {
@@ -71,6 +77,7 @@ async function handleDelete(id: string) {
   <SubscriptionFormModal
     :is-open="isModalOpen"
     :editing-sub="editingSub"
+    :server-error="submitError"
     @close="isModalOpen = false"
     @submit="handleSubmit"
   />

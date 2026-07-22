@@ -58,7 +58,10 @@ export const useSubscriptionStore = defineStore('subscriptions', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sub),
     });
-    if (!res.ok) throw new Error('Failed to add subscription');
+    if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || 'Failed to add subscription');
+    }
     await Promise.all([fetchAll(), fetchStats()]);
 
   }
@@ -69,9 +72,11 @@ export const useSubscriptionStore = defineStore('subscriptions', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sub),
     });
-    if (!res.ok) throw new Error('Failed to update subscription');
-    await fetchAll();
-    await fetchStats();
+    if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || 'Failed to add subscription');
+  }
+    await Promise.all([fetchAll(), fetchStats()]);
   }
 
   async function deleteSubscription(id: string) {

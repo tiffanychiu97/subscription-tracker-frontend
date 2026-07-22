@@ -5,6 +5,7 @@ import type { Subscription, BillingCycle, Category } from "../types";
 const props = defineProps<{
   isOpen: boolean;
   editingSub: Subscription | null;
+  serverError?: string | null;
 }>();
 
 const emit = defineEmits<{
@@ -96,10 +97,11 @@ function handleSubmit() {
         </h2>
 
         <ul
-          v-if="errors.length"
+          v-if="errors.length || serverError"
           class="bg-red-50 text-red-700 text-sm rounded p-3 space-y-1 mb-4"
         >
           <li v-for="err in errors" :key="err">{{ err }}</li>
+          <li v-if="serverError">{{ serverError }}</li>
         </ul>
 
         <form @submit.prevent="handleSubmit" class="space-y-4">
